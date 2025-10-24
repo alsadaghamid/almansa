@@ -237,6 +237,8 @@
             message += '🔷 رؤيتك الشخصية:\n';
             message += 'دورك في بناء سودان جديد: ' + document.getElementById('role').value + '\n';
             message += 'التزام بالقيم: ' + document.querySelector('input[name="commitment"]:checked').value + '\n';
+            let summary = 'الاسم: ' + document.getElementById('fullName').value + ', العمر: ' + document.getElementById('age').value + ', المدينة: ' + document.getElementById('city').value + ', الهاتف: ' + document.getElementById('phone').value;
+            alert('تم إرسال الاستمارة بنجاح!\nملخص: ' + summary);
             window.open('https://wa.me/message/QTLJ4LOSGZKJG1?text=' + encodeURIComponent(message), '_blank');
             window.open('mailto:alsadaghamid@gmail.com?subject=استمارة عضوية&body=' + encodeURIComponent(message), '_blank');
         });

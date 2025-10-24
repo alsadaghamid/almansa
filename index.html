@@ -199,6 +199,12 @@
         </form>
     </div>
     
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <a href="https://wa.me/message/QTLJ4LOSGZKJG1" target="_blank" title="تواصل عبر واتساب">
+            <button style="background: #25D366; color: white; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">💬</button>
+        </a>
+    </div>
+    
     <script>
         document.getElementById('membershipForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -231,7 +237,8 @@
             message += '🔷 رؤيتك الشخصية:\n';
             message += 'دورك في بناء سودان جديد: ' + document.getElementById('role').value + '\n';
             message += 'التزام بالقيم: ' + document.querySelector('input[name="commitment"]:checked').value + '\n';
-            window.location.href = 'https://wa.me/message/QTLJ4LOSGZKJG1?text=' + encodeURIComponent(message);
+            window.open('https://wa.me/message/QTLJ4LOSGZKJG1?text=' + encodeURIComponent(message), '_blank');
+            window.open('mailto:alsadaghamid@gmail.com?subject=استمارة عضوية&body=' + encodeURIComponent(message), '_blank');
         });
 
         document.getElementById('downloadPdf').addEventListener('click', function() {

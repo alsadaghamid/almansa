@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة عضوية – مجتمع "أنت صاحب المنصة"</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            direction: rtl;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: white;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #f0f4f8;
+            border-bottom: 2px solid #fff;
+            padding-bottom: 5px;
+        }
+        .section {
+            margin-bottom: 30px;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: white;
+        }
+        input[type="text"], input[type="email"], input[type="number"], textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+        .checkbox-group, .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .checkbox-group label, .radio-group label {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.2);
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: normal;
+            color: white;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            margin-left: 8px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #downloadPdf {
+            background-color: #007bff;
+        }
+        #downloadPdf:hover {
+            background-color: #0056b3;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .checkbox-group, .radio-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 استمارة عضوية – مجتمع "أنت صاحب المنصة"</h1>
+        <p>كن جزءاً من الحراك الذي يصنع التغيير، ويحتفي بالشباب كقادة وأصحاب قرار.</p>
+        
+        <form id="membershipForm">
+            <div class="section">
+                <h2>🔷 المعلومات الشخصية:</h2>
+                <label for="fullName">الاسم الكامل:</label>
+                <input type="text" id="fullName" name="fullName" required>
+                
+                <label for="age">العمر:</label>
+                <input type="number" id="age" name="age" required>
+                
+                <div class="radio-group">
+                    <label>الجنس:</label>
+                    <label><input type="radio" name="gender" value="male" required> ذكر</label>
+                    <label><input type="radio" name="gender" value="female" required> أنثى</label>
+                </div>
+                
+                <label for="city">المدينة / القرية:</label>
+                <input type="text" id="city" name="city" required>
+                
+                <label for="phone">رقم الهاتف / واتساب:</label>
+                <input type="text" id="phone" name="phone" required>
+                
+                <label for="email">البريد الإلكتروني (اختياري):</label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <div class="section">
+                <h2>🔷 المهارات والمجالات التي تهتم بها:</h2>
+                <p>اختر ما يعبر عنك، أو أضف مجالاً خاصاً بك.</p>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="skills" value="تطوير الذات"> تطوير الذات</label>
+                    <label><input type="checkbox" name="skills" value="العمل الجماعي"> العمل الجماعي</label>
+                    <label><input type="checkbox" name="skills" value="التوعية الصحية"> التوعية الصحية</label>
+                    <label><input type="checkbox" name="skills" value="المحافظة على البيئة"> المحافظة على البيئة</label>
+                    <label><input type="checkbox" name="skills" value="الإعلام والميديا"> الإعلام والميديا</label>
+                    <label><input type="checkbox" name="skills" value="التصميم / البرمجة / التقنية"> التصميم / البرمجة / التقنية</label>
+                    <label><input type="checkbox" name="skills" value="الثقافة والفكر"> الثقافة والفكر</label>
+                </div>
+                <label for="otherSkills">أخرى:</label>
+                <input type="text" id="otherSkills" name="otherSkills">
+            </div>
+            
+            <div class="section">
+                <h2>🔷 دوافعك للانضمام:</h2>
+                <label for="whyJoin">لماذا تريد أن تكون جزءاً من مجتمع "أنت صاحب المنصة"؟</label>
+                <textarea id="whyJoin" name="whyJoin" rows="4" required></textarea>
+                
+                <label for="inspiration">ما الذي يلهمك في فكرة المنصة؟</label>
+                <textarea id="inspiration" name="inspiration" rows="4" required></textarea>
+            </div>
+            
+            <div class="section">
+                <h2>🔷 التزامك المجتمعي:</h2>
+                <div class="radio-group">
+                    <label>هل تستطيع تأسيس مجتمع محلي في منطقتك؟</label>
+                    <label><input type="radio" name="localCommunity" value="yes" required> نعم</label>
+                    <label><input type="radio" name="localCommunity" value="no" required> لا</label>
+                </div>
+                <label for="communityArea">إذا كانت الإجابة نعم، ما اسم المنطقة؟</label>
+                <input type="text" id="communityArea" name="communityArea">
+                
+                <div class="radio-group">
+                    <label>كم ساعة أسبوعياً يمكنك تخصيصها للمنصة؟</label>
+                    <label><input type="radio" name="hours" value="less5" required> أقل من 5 ساعات</label>
+                    <label><input type="radio" name="hours" value="5-10" required> 5–10 ساعات</label>
+                    <label><input type="radio" name="hours" value="more10" required> أكثر من 10 ساعات</label>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2>🔷 رؤيتك الشخصية:</h2>
+                <label for="role">كيف ترى دورك في بناء سودان جديد؟</label>
+                <textarea id="role" name="role" rows="4" required></textarea>
+                
+                <div class="radio-group">
+                    <label>هل تلتزم بقيم المنصة: القوة، العزيمة، الإصرار، الإنسانية؟</label>
+                    <label><input type="radio" name="commitment" value="yes" required> نعم، ألتزم تماماً</label>
+                    <label><input type="radio" name="commitment" value="needMore" required> أحتاج توضيح أكثر</label>
+                </div>
+            </div>
+            
+            <button type="button" id="downloadPdf">تنزيل PDF</button>
+            <button type="submit">إرسال الاستمارة</button>
+        </form>
+    </div>
+    
+    <script>
+        document.getElementById('membershipForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            html2pdf(document.querySelector('.container')).then(function (pdf) {
+                const blob = pdf.output('blob');
+                if (navigator.share && navigator.canShare && navigator.canShare({ files: [new File([blob], 'membership-form.pdf', {type: 'application/pdf'})] })) {
+                    navigator.share({
+                        title: 'استمارة عضوية',
+                        text: 'استمارة عضوية PDF',
+                        files: [new File([blob], 'membership-form.pdf', {type: 'application/pdf'})]
+                    }).then(() => {
+                        alert('تم مشاركة الـ PDF بنجاح!');
+                    }).catch(err => {
+                        console.error('Error sharing:', err);
+                        pdf.save('membership-form.pdf');
+                        alert('تم تنزيل الـ PDF. يرجى إرساله عبر الواتساب.');
+                    });
+                } else {
+                    pdf.save('membership-form.pdf');
+                    alert('تم تنزيل الـ PDF. يرجى إرساله عبر الواتساب إلى الرقم المحدد.');
+                }
+            });
+        });
+
+        document.getElementById('downloadPdf').addEventListener('click', function() {
+            html2pdf(document.querySelector('.container')).save('membership-form.pdf');
+        });
+    </script>
+</body>
+</html>

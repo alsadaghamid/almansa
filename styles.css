@@ -5,6 +5,7 @@ body {
     padding: 20px;
     direction: rtl;
     color: #333;
+    transition: background-color 0.3s ease;
 }
 .container {
     max-width: 900px;
@@ -75,10 +76,13 @@ button {
     cursor: pointer;
     font-size: 18px;
     width: 100%;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 button:hover {
     background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 #downloadPdf {
     background-color: #007bff;
@@ -123,9 +127,14 @@ button:hover {
 }
 .step-content {
     display: none;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 .step-content.active {
     display: block;
+    opacity: 1;
+    transform: translateX(0);
 }
 .form-navigation {
     display: flex;
@@ -156,15 +165,59 @@ button:hover {
 #downloadPdf:hover {
     background: #e0a800;
 }
+/* Error messages */
+.error {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Review summary */
+#reviewSummary {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+#reviewSummary p {
+    margin: 8px 0;
+    color: white;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
+        margin: 10px;
+        border-radius: 10px;
     }
     h1 {
         font-size: 2em;
     }
+    h2 {
+        font-size: 1.5em;
+    }
     .checkbox-group, .radio-group {
         flex-direction: column;
+        gap: 10px;
+    }
+    #reviewSummary {
+        font-size: 14px;
+        padding: 10px;
+    }
+    button {
+        padding: 12px;
+        font-size: 16px;
+    }
+    .step-indicators {
+        flex-wrap: wrap;
+    }
+    .step {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
     }
 }

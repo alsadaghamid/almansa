@@ -23,33 +23,34 @@
                 <span class="step" data-step="3">3</span>
                 <span class="step" data-step="4">4</span>
                 <span class="step" data-step="5">5</span>
+                <span class="step" data-step="6">6</span>
             </div>
         </div>
         
-        <form id="membershipForm">
+        <form id="membershipForm" role="form" aria-label="استمارة عضوية مجتمع أنت صاحب المنصة">
             <div class="step-content active" data-step="1">
                 <div class="section">
                     <h2>🔷 المعلومات الشخصية:</h2>
                     <label for="fullName">الاسم الكامل:</label>
-                    <input type="text" id="fullName" name="fullName" required>
+                    <input type="text" id="fullName" name="fullName" required aria-required="true" aria-label="الاسم الكامل">
                     
                     <label for="age">العمر:</label>
-                    <input type="number" id="age" name="age" required>
+                    <input type="number" id="age" name="age" required aria-required="true" aria-label="العمر" min="1" max="120">
                     
                     <div class="radio-group">
                         <label>الجنس:</label>
-                        <label><input type="radio" name="gender" value="male" required> ذكر</label>
-                        <label><input type="radio" name="gender" value="female" required> أنثى</label>
+                        <label><input type="radio" name="gender" value="male" required aria-required="true"> ذكر</label>
+                        <label><input type="radio" name="gender" value="female" required aria-required="true"> أنثى</label>
                     </div>
                     
                     <label for="city">المدينة / القرية:</label>
-                    <input type="text" id="city" name="city" required>
+                    <input type="text" id="city" name="city" required aria-required="true" aria-label="المدينة أو القرية">
                     
                     <label for="phone">رقم الهاتف / واتساب:</label>
-                    <input type="text" id="phone" name="phone" required>
+                    <input type="text" id="phone" name="phone" required aria-required="true" aria-label="رقم الهاتف أو واتساب">
                     
                     <label for="email">البريد الإلكتروني (اختياري):</label>
-                    <input type="email" id="email" name="email">
+                    <input type="email" id="email" name="email" aria-label="البريد الإلكتروني">
                 </div>
             </div>
             
@@ -58,16 +59,16 @@
                     <h2>🔷 المهارات والمجالات التي تهتم بها:</h2>
                     <p>اختر ما يعبر عنك، أو أضف مجالاً خاصاً بك.</p>
                     <div class="checkbox-group">
-                        <label><input type="checkbox" name="skills" value="تطوير الذات"> تطوير الذات</label>
-                        <label><input type="checkbox" name="skills" value="العمل الجماعي"> العمل الجماعي</label>
-                        <label><input type="checkbox" name="skills" value="التوعية الصحية"> التوعية الصحية</label>
-                        <label><input type="checkbox" name="skills" value="المحافظة على البيئة"> المحافظة على البيئة</label>
-                        <label><input type="checkbox" name="skills" value="الإعلام والميديا"> الإعلام والميديا</label>
-                        <label><input type="checkbox" name="skills" value="التصميم / البرمجة / التقنية"> التصميم / البرمجة / التقنية</label>
-                        <label><input type="checkbox" name="skills" value="الثقافة والفكر"> الثقافة والفكر</label>
+                        <label><input type="checkbox" name="skills" value="تطوير الذات" aria-label="تطوير الذات"> تطوير الذات</label>
+                        <label><input type="checkbox" name="skills" value="العمل الجماعي" aria-label="العمل الجماعي"> العمل الجماعي</label>
+                        <label><input type="checkbox" name="skills" value="التوعية الصحية" aria-label="التوعية الصحية"> التوعية الصحية</label>
+                        <label><input type="checkbox" name="skills" value="المحافظة على البيئة" aria-label="المحافظة على البيئة"> المحافظة على البيئة</label>
+                        <label><input type="checkbox" name="skills" value="الإعلام والميديا" aria-label="الإعلام والميديا"> الإعلام والميديا</label>
+                        <label><input type="checkbox" name="skills" value="التصميم / البرمجة / التقنية" aria-label="التصميم / البرمجة / التقنية"> التصميم / البرمجة / التقنية</label>
+                        <label><input type="checkbox" name="skills" value="الثقافة والفكر" aria-label="الثقافة والفكر"> الثقافة والفكر</label>
                     </div>
                     <label for="otherSkills">أخرى:</label>
-                    <input type="text" id="otherSkills" name="otherSkills">
+                    <input type="text" id="otherSkills" name="otherSkills" aria-label="مهارات أخرى">
                 </div>
             </div>
             
@@ -75,10 +76,10 @@
                 <div class="section">
                     <h2>🔷 دوافعك للانضمام:</h2>
                     <label for="whyJoin">لماذا تريد أن تكون جزءاً من مجتمع "أنت صاحب المنصة"؟</label>
-                    <textarea id="whyJoin" name="whyJoin" rows="4" required></textarea>
+                    <textarea id="whyJoin" name="whyJoin" rows="4" required aria-required="true" aria-label="دوافع الانضمام"></textarea>
                     
                     <label for="inspiration">ما الذي يلهمك في فكرة المنصة؟</label>
-                    <textarea id="inspiration" name="inspiration" rows="4" required></textarea>
+                    <textarea id="inspiration" name="inspiration" rows="4" required aria-required="true" aria-label="ما يلهمك"></textarea>
                 </div>
             </div>
             
@@ -87,17 +88,17 @@
                     <h2>🔷 التزامك المجتمعي:</h2>
                     <div class="radio-group">
                         <label>هل تستطيع تأسيس مجتمع محلي في منطقتك؟</label>
-                        <label><input type="radio" name="localCommunity" value="yes" required> نعم</label>
-                        <label><input type="radio" name="localCommunity" value="no" required> لا</label>
+                        <label><input type="radio" name="localCommunity" value="yes" required aria-required="true"> نعم</label>
+                        <label><input type="radio" name="localCommunity" value="no" required aria-required="true"> لا</label>
                     </div>
                     <label for="communityArea">إذا كانت الإجابة نعم، ما اسم المنطقة؟</label>
-                    <input type="text" id="communityArea" name="communityArea">
+                    <input type="text" id="communityArea" name="communityArea" aria-label="اسم المنطقة إذا نعم">
                     
                     <div class="radio-group">
                         <label>كم ساعة أسبوعياً يمكنك تخصيصها للمنصة؟</label>
-                        <label><input type="radio" name="hours" value="less5" required> أقل من 5 ساعات</label>
-                        <label><input type="radio" name="hours" value="5-10" required> 5–10 ساعات</label>
-                        <label><input type="radio" name="hours" value="more10" required> أكثر من 10 ساعات</label>
+                        <label><input type="radio" name="hours" value="less5" required aria-required="true"> أقل من 5 ساعات</label>
+                        <label><input type="radio" name="hours" value="5-10" required aria-required="true"> 5–10 ساعات</label>
+                        <label><input type="radio" name="hours" value="more10" required aria-required="true"> أكثر من 10 ساعات</label>
                     </div>
                 </div>
             </div>
@@ -106,12 +107,27 @@
                 <div class="section">
                     <h2>🔷 رؤيتك الشخصية:</h2>
                     <label for="role">كيف ترى دورك في بناء سودان جديد؟</label>
-                    <textarea id="role" name="role" rows="4" required></textarea>
+                    <textarea id="role" name="role" rows="4" required aria-required="true" aria-label="دورك في بناء سودان جديد"></textarea>
                     
                     <div class="radio-group">
                         <label>هل تلتزم بقيم المنصة: القوة، العزيمة، الإصرار، الإنسانية؟</label>
-                        <label><input type="radio" name="commitment" value="yes" required> نعم، ألتزم تماماً</label>
-                        <label><input type="radio" name="commitment" value="needMore" required> أحتاج توضيح أكثر</label>
+                        <label><input type="radio" name="commitment" value="yes" required aria-required="true"> نعم، ألتزم تماماً</label>
+                        <label><input type="radio" name="commitment" value="needMore" required aria-required="true"> أحتاج توضيح أكثر</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-content" data-step="6">
+                <div class="section">
+                    <h2>🔷 مراجعة الاستمارة:</h2>
+                    <p>يرجى مراجعة المعلومات المدخلة قبل الإرسال:</p>
+                    <div id="reviewSummary">
+                        <!-- Summary will be populated by JS -->
+                    </div>
+                    <div class="radio-group">
+                        <label>هل كل المعلومات صحيحة؟</label>
+                        <label><input type="radio" name="confirm" value="yes" required aria-required="true"> نعم، أؤكد</label>
+                        <label><input type="radio" name="confirm" value="no" required aria-required="true"> لا، أحتاج تعديل</label>
                     </div>
                 </div>
             </div>

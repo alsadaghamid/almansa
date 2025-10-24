@@ -1,5 +1,5 @@
 let currentStep = 1;
-const totalSteps = 5;
+const totalSteps = 6;
 const steps = document.querySelectorAll('.step-content');
 const indicators = document.querySelectorAll('.step');
 const progress = document.getElementById('progress');
@@ -25,10 +25,130 @@ function showStep(step) {
         nextBtn.style.display = 'block';
         submitBtn.style.display = 'none';
     }
+    if (step === 6) {
+        generateReviewSummary();
+    }
+}
+
+function validateStep(step) {
+    let isValid = true;
+    const currentStepContent = document.querySelector(`[data-step="${step}"]`);
+    const errors = currentStepContent.querySelectorAll('.error');
+    errors.forEach(error => error.remove());
+
+    if (step === 1) {
+        const fullName = document.getElementById('fullName').value.trim();
+        const age = document.getElementById('age').value;
+        const gender = document.querySelector('input[name="gender"]:checked');
+        const city = document.getElementById('city').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+
+        if (!fullName) {
+            showError('fullName', 'الاسم الكامل مطلوب.');
+            isValid = false;
+        }
+        if (!age || age < 1 || age > 120) {
+            showError('age', 'العمر يجب أن يكون بين 1 و 120.');
+            isValid = false;
+        }
+        if (!gender) {
+            showError('gender', 'يرجى اختيار الجنس.');
+            isValid = false;
+        }
+        if (!city) {
+            showError('city', 'المدينة / القرية مطلوبة.');
+            isValid = false;
+        }
+        if (!phone || !/^\+?[\d\s\-\(\)]+$/.test(phone)) {
+            showError('phone', 'رقم الهاتف غير صالح.');
+            isValid = false;
+        }
+    } else if (step === 2) {
+        const skills = document.querySelectorAll('input[name="skills"]:checked');
+        if (skills.length === 0) {
+            showError('skills', 'يرجى اختيار مهارة واحدة على الأقل.');
+            isValid = false;
+        }
+    } else if (step === 3) {
+        const whyJoin = document.getElementById('whyJoin').value.trim();
+        const inspiration = document.getElementById('inspiration').value.trim();
+        if (!whyJoin) {
+            showError('whyJoin', 'يرجى شرح دوافعك للانضمام.');
+            isValid = false;
+        }
+        if (!inspiration) {
+            showError('inspiration', 'يرجى شرح ما يلهمك.');
+            isValid = false;
+        }
+    } else if (step === 4) {
+        const localCommunity = document.querySelector('input[name="localCommunity"]:checked');
+        const hours = document.querySelector('input[name="hours"]:checked');
+        if (!localCommunity) {
+            showError('localCommunity', 'يرجى الإجابة عن تأسيس مجتمع محلي.');
+            isValid = false;
+        }
+        if (!hours) {
+            showError('hours', 'يرجى اختيار عدد الساعات.');
+            isValid = false;
+        }
+    } else if (step === 5) {
+        const role = document.getElementById('role').value.trim();
+        const commitment = document.querySelector('input[name="commitment"]:checked');
+        if (!role) {
+            showError('role', 'يرجى وصف دورك.');
+            isValid = false;
+        }
+        if (!commitment) {
+            showError('commitment', 'يرجى الإجابة عن الالتزام بالقيم.');
+            isValid = false;
+        }
+    } else if (step === 6) {
+        const confirm = document.querySelector('input[name="confirm"]:checked');
+        if (!confirm || confirm.value !== 'yes') {
+            showError('confirm', 'يرجى تأكيد المعلومات.');
+            isValid = false;
+        }
+    }
+
+    return isValid;
+}
+
+function showError(fieldId, message) {
+    const field = document.getElementById(fieldId) || document.querySelector(`input[name="${fieldId}"]`);
+    if (field) {
+        const error = document.createElement('div');
+        error.className = 'error';
+        error.textContent = message;
+        error.style.color = 'red';
+        error.style.fontSize = '14px';
+        error.style.marginTop = '5px';
+        field.parentNode.insertBefore(error, field.nextSibling);
+    }
+}
+
+function generateReviewSummary() {
+    const summaryDiv = document.getElementById('reviewSummary');
+    summaryDiv.innerHTML = `
+        <p><strong>الاسم الكامل:</strong> ${document.getElementById('fullName').value}</p>
+        <p><strong>العمر:</strong> ${document.getElementById('age').value}</p>
+        <p><strong>الجنس:</strong> ${document.querySelector('input[name="gender"]:checked')?.value}</p>
+        <p><strong>المدينة / القرية:</strong> ${document.getElementById('city').value}</p>
+        <p><strong>رقم الهاتف:</strong> ${document.getElementById('phone').value}</p>
+        <p><strong>البريد الإلكتروني:</strong> ${document.getElementById('email').value || 'غير محدد'}</p>
+        <p><strong>المهارات:</strong> ${Array.from(document.querySelectorAll('input[name="skills"]:checked')).map(cb => cb.value).join(', ') || 'لا توجد'}</p>
+        <p><strong>أخرى:</strong> ${document.getElementById('otherSkills').value || 'لا توجد'}</p>
+        <p><strong>دوافع الانضمام:</strong> ${document.getElementById('whyJoin').value}</p>
+        <p><strong>ما يلهمك:</strong> ${document.getElementById('inspiration').value}</p>
+        <p><strong>تأسيس مجتمع محلي:</strong> ${document.querySelector('input[name="localCommunity"]:checked')?.value}</p>
+        <p><strong>اسم المنطقة:</strong> ${document.getElementById('communityArea').value || 'غير محدد'}</p>
+        <p><strong>ساعات أسبوعية:</strong> ${document.querySelector('input[name="hours"]:checked')?.value}</p>
+        <p><strong>دورك في بناء سودان جديد:</strong> ${document.getElementById('role').value}</p>
+        <p><strong>التزام بالقيم:</strong> ${document.querySelector('input[name="commitment"]:checked')?.value}</p>
+    `;
 }
 
 nextBtn.addEventListener('click', () => {
-    if (currentStep < totalSteps) {
+    if (validateStep(currentStep) && currentStep < totalSteps) {
         currentStep++;
         showStep(currentStep);
     }
@@ -43,6 +163,11 @@ prevBtn.addEventListener('click', () => {
 
 document.getElementById('membershipForm').addEventListener('submit', function(event) {
     event.preventDefault();
+    const confirm = document.querySelector('input[name="confirm"]:checked');
+    if (!confirm || confirm.value !== 'yes') {
+        alert('يرجى تأكيد المعلومات في خطوة المراجعة.');
+        return;
+    }
     let message = 'استمارة عضوية – مجتمع "أنت صاحب المنصة":\n\n';
     message += '🔷 المعلومات الشخصية:\n';
     message += 'الاسم الكامل: ' + document.getElementById('fullName').value + '\n';

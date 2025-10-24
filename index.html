@@ -95,6 +95,76 @@
         #downloadPdf:hover {
             background-color: #0056b3;
         }
+        .progress-container {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: #28a745;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .step-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .step.active {
+            background: #28a745;
+        }
+        .step-content {
+            display: none;
+        }
+        .step-content.active {
+            display: block;
+        }
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .form-navigation button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+        .form-navigation button:hover {
+            background: #0056b3;
+        }
+        #submitBtn {
+            background: #28a745;
+        }
+        #submitBtn:hover {
+            background: #218838;
+        }
+        #downloadPdf {
+            background: #ffc107;
+            color: #333;
+        }
+        #downloadPdf:hover {
+            background: #e0a800;
+        }
         /* Responsive */
         @media (max-width: 768px) {
             .container {
@@ -114,88 +184,115 @@
         <h1>📝 استمارة عضوية – مجتمع "أنت صاحب المنصة"</h1>
         <p>كن جزءاً من الحراك الذي يصنع التغيير، ويحتفي بالشباب كقادة وأصحاب قرار.</p>
         
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="step-indicators">
+                <span class="step active" data-step="1">1</span>
+                <span class="step" data-step="2">2</span>
+                <span class="step" data-step="3">3</span>
+                <span class="step" data-step="4">4</span>
+                <span class="step" data-step="5">5</span>
+            </div>
+        </div>
+        
         <form id="membershipForm">
-            <div class="section">
-                <h2>🔷 المعلومات الشخصية:</h2>
-                <label for="fullName">الاسم الكامل:</label>
-                <input type="text" id="fullName" name="fullName" required>
-                
-                <label for="age">العمر:</label>
-                <input type="number" id="age" name="age" required>
-                
-                <div class="radio-group">
-                    <label>الجنس:</label>
-                    <label><input type="radio" name="gender" value="male" required> ذكر</label>
-                    <label><input type="radio" name="gender" value="female" required> أنثى</label>
-                </div>
-                
-                <label for="city">المدينة / القرية:</label>
-                <input type="text" id="city" name="city" required>
-                
-                <label for="phone">رقم الهاتف / واتساب:</label>
-                <input type="text" id="phone" name="phone" required>
-                
-                <label for="email">البريد الإلكتروني (اختياري):</label>
-                <input type="email" id="email" name="email">
-            </div>
-            
-            <div class="section">
-                <h2>🔷 المهارات والمجالات التي تهتم بها:</h2>
-                <p>اختر ما يعبر عنك، أو أضف مجالاً خاصاً بك.</p>
-                <div class="checkbox-group">
-                    <label><input type="checkbox" name="skills" value="تطوير الذات"> تطوير الذات</label>
-                    <label><input type="checkbox" name="skills" value="العمل الجماعي"> العمل الجماعي</label>
-                    <label><input type="checkbox" name="skills" value="التوعية الصحية"> التوعية الصحية</label>
-                    <label><input type="checkbox" name="skills" value="المحافظة على البيئة"> المحافظة على البيئة</label>
-                    <label><input type="checkbox" name="skills" value="الإعلام والميديا"> الإعلام والميديا</label>
-                    <label><input type="checkbox" name="skills" value="التصميم / البرمجة / التقنية"> التصميم / البرمجة / التقنية</label>
-                    <label><input type="checkbox" name="skills" value="الثقافة والفكر"> الثقافة والفكر</label>
-                </div>
-                <label for="otherSkills">أخرى:</label>
-                <input type="text" id="otherSkills" name="otherSkills">
-            </div>
-            
-            <div class="section">
-                <h2>🔷 دوافعك للانضمام:</h2>
-                <label for="whyJoin">لماذا تريد أن تكون جزءاً من مجتمع "أنت صاحب المنصة"؟</label>
-                <textarea id="whyJoin" name="whyJoin" rows="4" required></textarea>
-                
-                <label for="inspiration">ما الذي يلهمك في فكرة المنصة؟</label>
-                <textarea id="inspiration" name="inspiration" rows="4" required></textarea>
-            </div>
-            
-            <div class="section">
-                <h2>🔷 التزامك المجتمعي:</h2>
-                <div class="radio-group">
-                    <label>هل تستطيع تأسيس مجتمع محلي في منطقتك؟</label>
-                    <label><input type="radio" name="localCommunity" value="yes" required> نعم</label>
-                    <label><input type="radio" name="localCommunity" value="no" required> لا</label>
-                </div>
-                <label for="communityArea">إذا كانت الإجابة نعم، ما اسم المنطقة؟</label>
-                <input type="text" id="communityArea" name="communityArea">
-                
-                <div class="radio-group">
-                    <label>كم ساعة أسبوعياً يمكنك تخصيصها للمنصة؟</label>
-                    <label><input type="radio" name="hours" value="less5" required> أقل من 5 ساعات</label>
-                    <label><input type="radio" name="hours" value="5-10" required> 5–10 ساعات</label>
-                    <label><input type="radio" name="hours" value="more10" required> أكثر من 10 ساعات</label>
+            <div class="step-content active" data-step="1">
+                <div class="section">
+                    <h2>🔷 المعلومات الشخصية:</h2>
+                    <label for="fullName">الاسم الكامل:</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                    
+                    <label for="age">العمر:</label>
+                    <input type="number" id="age" name="age" required>
+                    
+                    <div class="radio-group">
+                        <label>الجنس:</label>
+                        <label><input type="radio" name="gender" value="male" required> ذكر</label>
+                        <label><input type="radio" name="gender" value="female" required> أنثى</label>
+                    </div>
+                    
+                    <label for="city">المدينة / القرية:</label>
+                    <input type="text" id="city" name="city" required>
+                    
+                    <label for="phone">رقم الهاتف / واتساب:</label>
+                    <input type="text" id="phone" name="phone" required>
+                    
+                    <label for="email">البريد الإلكتروني (اختياري):</label>
+                    <input type="email" id="email" name="email">
                 </div>
             </div>
             
-            <div class="section">
-                <h2>🔷 رؤيتك الشخصية:</h2>
-                <label for="role">كيف ترى دورك في بناء سودان جديد؟</label>
-                <textarea id="role" name="role" rows="4" required></textarea>
-                
-                <div class="radio-group">
-                    <label>هل تلتزم بقيم المنصة: القوة، العزيمة، الإصرار، الإنسانية؟</label>
-                    <label><input type="radio" name="commitment" value="yes" required> نعم، ألتزم تماماً</label>
-                    <label><input type="radio" name="commitment" value="needMore" required> أحتاج توضيح أكثر</label>
+            <div class="step-content" data-step="2">
+                <div class="section">
+                    <h2>🔷 المهارات والمجالات التي تهتم بها:</h2>
+                    <p>اختر ما يعبر عنك، أو أضف مجالاً خاصاً بك.</p>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="skills" value="تطوير الذات"> تطوير الذات</label>
+                        <label><input type="checkbox" name="skills" value="العمل الجماعي"> العمل الجماعي</label>
+                        <label><input type="checkbox" name="skills" value="التوعية الصحية"> التوعية الصحية</label>
+                        <label><input type="checkbox" name="skills" value="المحافظة على البيئة"> المحافظة على البيئة</label>
+                        <label><input type="checkbox" name="skills" value="الإعلام والميديا"> الإعلام والميديا</label>
+                        <label><input type="checkbox" name="skills" value="التصميم / البرمجة / التقنية"> التصميم / البرمجة / التقنية</label>
+                        <label><input type="checkbox" name="skills" value="الثقافة والفكر"> الثقافة والفكر</label>
+                    </div>
+                    <label for="otherSkills">أخرى:</label>
+                    <input type="text" id="otherSkills" name="otherSkills">
                 </div>
             </div>
             
-            <button type="button" id="downloadPdf">تنزيل PDF</button>
-            <button type="submit">إرسال الاستمارة</button>
+            <div class="step-content" data-step="3">
+                <div class="section">
+                    <h2>🔷 دوافعك للانضمام:</h2>
+                    <label for="whyJoin">لماذا تريد أن تكون جزءاً من مجتمع "أنت صاحب المنصة"؟</label>
+                    <textarea id="whyJoin" name="whyJoin" rows="4" required></textarea>
+                    
+                    <label for="inspiration">ما الذي يلهمك في فكرة المنصة؟</label>
+                    <textarea id="inspiration" name="inspiration" rows="4" required></textarea>
+                </div>
+            </div>
+            
+            <div class="step-content" data-step="4">
+                <div class="section">
+                    <h2>🔷 التزامك المجتمعي:</h2>
+                    <div class="radio-group">
+                        <label>هل تستطيع تأسيس مجتمع محلي في منطقتك؟</label>
+                        <label><input type="radio" name="localCommunity" value="yes" required> نعم</label>
+                        <label><input type="radio" name="localCommunity" value="no" required> لا</label>
+                    </div>
+                    <label for="communityArea">إذا كانت الإجابة نعم، ما اسم المنطقة؟</label>
+                    <input type="text" id="communityArea" name="communityArea">
+                    
+                    <div class="radio-group">
+                        <label>كم ساعة أسبوعياً يمكنك تخصيصها للمنصة؟</label>
+                        <label><input type="radio" name="hours" value="less5" required> أقل من 5 ساعات</label>
+                        <label><input type="radio" name="hours" value="5-10" required> 5–10 ساعات</label>
+                        <label><input type="radio" name="hours" value="more10" required> أكثر من 10 ساعات</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step-content" data-step="5">
+                <div class="section">
+                    <h2>🔷 رؤيتك الشخصية:</h2>
+                    <label for="role">كيف ترى دورك في بناء سودان جديد؟</label>
+                    <textarea id="role" name="role" rows="4" required></textarea>
+                    
+                    <div class="radio-group">
+                        <label>هل تلتزم بقيم المنصة: القوة، العزيمة، الإصرار، الإنسانية؟</label>
+                        <label><input type="radio" name="commitment" value="yes" required> نعم، ألتزم تماماً</label>
+                        <label><input type="radio" name="commitment" value="needMore" required> أحتاج توضيح أكثر</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-navigation">
+                <button type="button" id="prevBtn" style="display: none;">السابق</button>
+                <button type="button" id="nextBtn">التالي</button>
+                <button type="submit" id="submitBtn" style="display: none;">إرسال الاستمارة</button>
+                <button type="button" id="downloadPdf">تنزيل PDF</button>
+            </div>
         </form>
     </div>
     
@@ -206,6 +303,49 @@
     </div>
     
     <script>
+        let currentStep = 1;
+        const totalSteps = 5;
+        const steps = document.querySelectorAll('.step-content');
+        const indicators = document.querySelectorAll('.step');
+        const progress = document.getElementById('progress');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showStep(step) {
+            steps.forEach(s => s.classList.remove('active'));
+            indicators.forEach(i => i.classList.remove('active'));
+            document.querySelector(`[data-step="${step}"]`).classList.add('active');
+            indicators[step - 1].classList.add('active');
+            progress.style.width = (step / totalSteps) * 100 + '%';
+            if (step === 1) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'block';
+            }
+            if (step === totalSteps) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'block';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
         document.getElementById('membershipForm').addEventListener('submit', function(event) {
             event.preventDefault();
             let message = 'استمارة عضوية – مجتمع "أنت صاحب المنصة":\n\n';
@@ -260,6 +400,8 @@
                 }
             }).from(document.querySelector('.container')).save('membership-form.pdf');
         });
+
+        showStep(currentStep);
     </script>
 </body>
 </html>
